@@ -23,10 +23,10 @@ def book_check(query):
     soup = BeautifulSoup(resp.text, 'html.parser')
     for link in soup.find_all('a'):
         if(len(link.get('href'))==10):
-            print(link)
+#            print(link)
             value=link.get('href')
             break
-    print(value)
+#    print(value)
     new_url="https://www.booksprice.com/comparePrice.do?l=y&searchType=compare&inputData="
     new_url +=value
     new_url += "&dontShowRentals=true&fromPrice=true"
@@ -101,10 +101,8 @@ for url in list_of_urls:
                     "price": "unknown"
                                        }
 
-            # Add one product tier to our datastructure
             tier_dict[tiername] = {"products": product_names}
 
-    # After we build our datastructure...
     for tiername, tierinfo in tier_dict.items():
 
         print(tiername)
@@ -122,7 +120,7 @@ for url in list_of_urls:
     print("\n\n")
 
 
-print(csv_dict)
+#print(csv_dict)
 csv_file = "books.csv"
 csv_columns=['Book', 'Bundle', 'Amazon Link', 'Tier']
 
@@ -131,8 +129,8 @@ try:
         writer = csv.DictWriter(csvfile, fieldnames=csv_columns)
         writer.writeheader()
         for data in csv_dict:
-            print(data)
-            print(csv_dict[data])
+            #print(data)
+            #print(csv_dict[data])
             writer.writerow(csv_dict[data])
 
 except IOError:
